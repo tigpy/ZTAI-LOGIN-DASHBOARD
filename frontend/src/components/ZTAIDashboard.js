@@ -440,6 +440,232 @@ const ZTAIDashboard = () => {
             </Card>
           </motion.div>
         </div>
+
+        {/* Additional Content Sections */}
+        <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {/* Network Topology */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.8 }}
+          >
+            <Card className="bg-gray-900/80 backdrop-blur-md border-gray-800">
+              <CardHeader>
+                <CardTitle className="text-white flex items-center gap-2">
+                  <Globe className="h-5 w-5 text-blue-400" />
+                  Network Topology
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  <div className="grid grid-cols-3 gap-4 text-center">
+                    {[
+                      { node: "Core Gateway", status: "online", connections: 24 },
+                      { node: "Edge Nodes", status: "online", connections: 156 },
+                      { node: "Client Endpoints", status: "monitoring", connections: 2847 }
+                    ].map((item, index) => (
+                      <div key={index} className="p-3 bg-gray-800/50 rounded-lg">
+                        <div className="w-3 h-3 bg-green-400 rounded-full mx-auto mb-2 animate-pulse"></div>
+                        <p className="text-xs font-medium text-white">{item.node}</p>
+                        <p className="text-xs text-gray-400">{item.connections} active</p>
+                        <Badge className="mt-1 bg-green-500/20 text-green-400 border-green-500/30 text-xs">
+                          {item.status}
+                        </Badge>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="flex justify-center items-center space-x-4 mt-4">
+                    <div className="flex items-center space-x-2">
+                      <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                      <span className="text-xs text-gray-400">Secure Connections</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <div className="w-2 h-2 bg-yellow-400 rounded-full animate-pulse"></div>
+                      <span className="text-xs text-gray-400">Under Analysis</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <div className="w-2 h-2 bg-red-400 rounded-full animate-pulse"></div>
+                      <span className="text-xs text-gray-400">Blocked</span>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+
+          {/* Recent Blockchain Transactions */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.9 }}
+          >
+            <Card className="bg-gray-900/80 backdrop-blur-md border-gray-800">
+              <CardHeader>
+                <CardTitle className="text-white flex items-center gap-2">
+                  <Database className="h-5 w-5 text-yellow-400" />
+                  Recent Blockchain Transactions
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-3">
+                  {blockchainLogs.slice(0, 4).map((log) => (
+                    <div key={log.id} className="flex items-center justify-between p-2 bg-gray-800/30 rounded-lg">
+                      <div className="flex items-center space-x-3">
+                        <div className="w-2 h-2 bg-yellow-400 rounded-full animate-pulse"></div>
+                        <div>
+                          <p className="text-sm text-white font-medium">{log.action}</p>
+                          <p className="text-xs text-gray-400 truncate max-w-48">{log.user}</p>
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <p className="text-xs text-yellow-400 font-mono">#{log.blockNumber}</p>
+                        <p className="text-xs text-gray-500">{formatTimestamp(log.timestamp)}</p>
+                      </div>
+                    </div>
+                  ))}
+                  <div className="text-center mt-4">
+                    <Badge className="bg-yellow-500/20 text-yellow-400 border-yellow-500/30">
+                      <Database className="h-3 w-3 mr-1" />
+                      {stats.blockchainEntries.toLocaleString()} Total Entries
+                    </Badge>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+        </div>
+
+        {/* System Performance & Threat Intelligence */}
+        <div className="mt-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* System Performance Metrics */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 1.0 }}
+          >
+            <Card className="bg-gray-900/80 backdrop-blur-md border-gray-800">
+              <CardHeader>
+                <CardTitle className="text-white flex items-center gap-2">
+                  <Server className="h-5 w-5 text-green-400" />
+                  System Performance
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  {[
+                    { metric: "CPU Usage", value: "23%", color: "bg-green-500" },
+                    { metric: "Memory", value: "67%", color: "bg-yellow-500" },
+                    { metric: "Network I/O", value: "12%", color: "bg-green-500" },
+                    { metric: "Storage", value: "45%", color: "bg-green-500" }
+                  ].map((item, index) => (
+                    <div key={index} className="flex items-center justify-between">
+                      <span className="text-sm text-gray-300">{item.metric}</span>
+                      <div className="flex items-center space-x-2">
+                        <div className="w-20 bg-gray-700 rounded-full h-2">
+                          <motion.div 
+                            className={`${item.color} h-2 rounded-full`}
+                            initial={{ width: 0 }}
+                            animate={{ width: item.value }}
+                            transition={{ duration: 1.5, delay: 1.2 + index * 0.1 }}
+                          />
+                        </div>
+                        <span className="text-xs text-gray-400 w-8">{item.value}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+
+          {/* Threat Intelligence Feed */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 1.1 }}
+          >
+            <Card className="bg-gray-900/80 backdrop-blur-md border-gray-800">
+              <CardHeader>
+                <CardTitle className="text-white flex items-center gap-2">
+                  <AlertCircle className="h-5 w-5 text-orange-400" />
+                  Threat Intelligence
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-3">
+                  {[
+                    { threat: "New IoC detected", severity: "medium", time: "2m ago" },
+                    { threat: "Suspicious domain activity", severity: "high", time: "5m ago" },
+                    { threat: "Malware signature update", severity: "low", time: "8m ago" },
+                    { threat: "Geolocation anomaly", severity: "medium", time: "12m ago" }
+                  ].map((item, index) => (
+                    <div key={index} className="flex items-center justify-between p-2 bg-gray-800/30 rounded-lg">
+                      <div className="flex items-center space-x-2">
+                        <div className={`w-2 h-2 rounded-full ${
+                          item.severity === 'high' ? 'bg-red-400' : 
+                          item.severity === 'medium' ? 'bg-yellow-400' : 'bg-green-400'
+                        } animate-pulse`}></div>
+                        <span className="text-sm text-gray-300">{item.threat}</span>
+                      </div>
+                      <span className="text-xs text-gray-500">{item.time}</span>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+
+          {/* Security Posture */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 1.2 }}
+          >
+            <Card className="bg-gray-900/80 backdrop-blur-md border-gray-800">
+              <CardHeader>
+                <CardTitle className="text-white flex items-center gap-2">
+                  <Shield className="h-5 w-5 text-cyan-400" />
+                  Security Posture
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="text-center mb-4">
+                  <motion.div 
+                    className="text-4xl font-bold text-cyan-400 mb-2"
+                    animate={{ scale: [1, 1.05, 1] }}
+                    transition={{ duration: 3, repeat: Infinity }}
+                  >
+                    A+
+                  </motion.div>
+                  <p className="text-gray-400 text-sm">Overall Security Score</p>
+                </div>
+                <div className="space-y-2">
+                  {[
+                    { component: "Access Control", score: 98 },
+                    { component: "Data Protection", score: 95 },
+                    { component: "Network Security", score: 97 },
+                    { component: "Compliance", score: 99 }
+                  ].map((item, index) => (
+                    <div key={index} className="flex items-center justify-between text-sm">
+                      <span className="text-gray-300">{item.component}</span>
+                      <div className="flex items-center space-x-2">
+                        <div className="w-16 bg-gray-700 rounded-full h-1">
+                          <motion.div 
+                            className="bg-cyan-400 h-1 rounded-full"
+                            initial={{ width: 0 }}
+                            animate={{ width: `${item.score}%` }}
+                            transition={{ duration: 1.8, delay: 1.4 + index * 0.1 }}
+                          />
+                        </div>
+                        <span className="text-xs text-cyan-400 w-6">{item.score}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+        </div>
       </main>
     </div>
   );
