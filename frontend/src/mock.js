@@ -95,6 +95,96 @@ export const mockAccessFeed = [
     timestamp: new Date(Date.now() - 90000),
     ip: "203.0.113.15",
     device: "iPad"
+  },
+  {
+    id: 7,
+    user: "frank.wilson@ztai.com",
+    location: "Sydney, AU",
+    risk: "low",
+    decision: "allowed",
+    timestamp: new Date(Date.now() - 120000),
+    ip: "10.20.30.40",
+    device: "MacBook Air"
+  },
+  {
+    id: 8,
+    user: "malware.bot@darkweb.onion",
+    location: "Unknown Location",
+    risk: "high",
+    decision: "denied",
+    timestamp: new Date(Date.now() - 150000),
+    ip: "192.0.2.123",
+    device: "Bot Network"
+  },
+  {
+    id: 9,
+    user: "grace.kim@ztai.com",
+    location: "Seoul, KR",
+    risk: "low",
+    decision: "allowed",
+    timestamp: new Date(Date.now() - 180000),
+    ip: "172.31.0.100",
+    device: "Galaxy S24"
+  },
+  {
+    id: 10,
+    user: "henry.jones@ztai.com",
+    location: "Berlin, DE",
+    risk: "medium",
+    decision: "allowed",
+    timestamp: new Date(Date.now() - 210000),
+    ip: "10.0.1.50",
+    device: "ThinkPad X1"
+  },
+  {
+    id: 11,
+    user: "threat.actor@anon.net",
+    location: "Proxy Server",
+    risk: "high",
+    decision: "denied",
+    timestamp: new Date(Date.now() - 240000),
+    ip: "198.51.100.255",
+    device: "Kali Linux"
+  },
+  {
+    id: 12,
+    user: "isabel.garcia@ztai.com",
+    location: "Madrid, ES",
+    risk: "low",
+    decision: "allowed",
+    timestamp: new Date(Date.now() - 270000),
+    ip: "192.168.0.75",
+    device: "Surface Pro"
+  },
+  {
+    id: 13,
+    user: "jack.developer@ztai.com",
+    location: "Toronto, CA",
+    risk: "medium",
+    decision: "allowed",
+    timestamp: new Date(Date.now() - 300000),
+    ip: "10.10.10.25",
+    device: "iMac"
+  },
+  {
+    id: 14,
+    user: "phishing.attempt@fake.com",
+    location: "VPN Exit Node",
+    risk: "high",
+    decision: "denied",
+    timestamp: new Date(Date.now() - 330000),
+    ip: "203.0.113.99",
+    device: "Mobile Device"
+  },
+  {
+    id: 15,
+    user: "kate.analyst@ztai.com",
+    location: "Mumbai, IN",
+    risk: "low",
+    decision: "allowed",
+    timestamp: new Date(Date.now() - 360000),
+    ip: "172.16.5.10",
+    device: "Dell XPS"
   }
 ];
 
