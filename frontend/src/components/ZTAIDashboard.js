@@ -261,7 +261,7 @@ const ZTAIDashboard = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="space-y-2 max-h-96 overflow-y-auto">
+                <div className="space-y-2 max-h-80 overflow-y-auto">
                   <div className="grid grid-cols-12 gap-4 text-xs font-medium text-gray-400 pb-2 border-b border-gray-700">
                     <div className="col-span-4">User</div>
                     <div className="col-span-3">Location</div>
