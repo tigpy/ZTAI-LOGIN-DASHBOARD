@@ -261,7 +261,7 @@ const ZTAIDashboard = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="space-y-2 max-h-80 overflow-y-auto">
+                <div className="space-y-2 max-h-[500px] overflow-y-auto">
                   <div className="grid grid-cols-12 gap-4 text-xs font-medium text-gray-400 pb-2 border-b border-gray-700">
                     <div className="col-span-4">User</div>
                     <div className="col-span-3">Location</div>
@@ -273,7 +273,7 @@ const ZTAIDashboard = () => {
                     {accessFeed.map((event) => (
                       <motion.div
                         key={event.id}
-                        className={`grid grid-cols-12 gap-4 text-sm py-3 px-2 rounded-lg transition-all duration-300 ${
+                        className={`grid grid-cols-12 gap-4 text-sm py-2.5 px-2 rounded-lg transition-all duration-300 ${
                           newEventAnimation === event.id 
                             ? 'bg-cyan-500/20 border border-cyan-500/30' 
                             : 'hover:bg-gray-800/50'
